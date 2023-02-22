@@ -1,33 +1,15 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
+import Counter from "./components/Counter";
 
 function App() {
-  const [number, setNumber] = useState(0);
-  const [name, setName] = useState("damla");
-
-  // useEffect(() => {
-  //   console.log("State güncellendi");
-  // });
-  // bu ifade herhangi bir state güncellendiğinde kullanılır.
-
-  useEffect(() => {
-    console.log("Number State güncellendi");
-  }, [number]);
-
-  useEffect(() => {
-    console.log("component mount edildi");
-  }, []);
-
-  //virgülden sonra array açıp içini boş bırakırsak componenti mount etmiş oluyoruz.
+  const [isVisible, setIsvisible] = useState(true);
 
   return (
     <div className="App">
-      <h1>{number}</h1>
-      <button onClick={() => setNumber(number + 1)}>Click</button>
-
-      <hr />
-
-      <h1>{name}</h1>
-      <button onClick={() => setName("Erva")}>Click</button>
+      {isVisible && <Counter />}
+      <br />
+      <button onClick={() => setIsvisible(!isVisible)}>Toggle Counter</button>
+      {/* butona bastığımız anda kaldırılmasını istiyorum */}
     </div>
   );
 }
