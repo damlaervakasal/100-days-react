@@ -1,0 +1,57 @@
+#container {
+    width: 400px;
+    background-color: greenyellow;
+    padding: 20px;
+}
+
+input{
+    width: 100%;
+    padding: 5px;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing:border-box;
+}
+
+ul, 
+li{
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+.list{
+    margin: 15px 0;
+}
+
+.list > li {
+    background-color: rgb(50, 2, 2);
+    padding: 5px;
+    margin-bottom: 2px;
+    display: flex;
+    justify-content: space-between;
+} 
+
+li{
+    color: aliceblue;
+}
+p{
+    color: rgb(214, 18, 84);
+}
+
+.btn{
+    display: flex;
+    justify-content: flex-end;
+    padding: 10px 0 ;
+    align-items: center;
+}
+
+button {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.btn > button{
+    padding: 5px;
+    width: 40px;
+}
+
+
