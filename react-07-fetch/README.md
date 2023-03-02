@@ -1,70 +1,42 @@
-# Getting Started with Create React App
+# React Fetch - Axios
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### Fetch
+Herhangi bir veri kaynağına gidip o veri kaynağından ilgili veriyi aldıktan sonra  nasıl gösterilir ona bakılır.  Mount edildiği anda  biz o veriye erişmek istiyoruz ve
+veri kaynağına erişebilmemiz için native bir kaynak veriliyor. Fetch kullanarak ek herhangi bir kütüphane kullanmadan gerekli veri kaynağına erişebiliyoruz. Yani fetch kaynakları (ağ genelinde dahil) getirilmesine yönelik basit bir arayüzdür diyebiliriz.
 
-## Available Scripts
+```javascript
+  fetch(APIURL) 
+      .then((res) => res.json()) 
+      .then((users) => setData(users)) 
+      .catch((err) => console.log(err));
+```
 
-In the project directory, you can run:
+### Axios
+Axios'ı kullanrak fetch ile yaptığımız her şeyi yapabiliriz. Fetch ile Axiosu arasındaki birkaç önemli farklar vardır.
+- Fetch'i kullandığımız zaman bize bodyi json olarak değil de string ifade olarak veriyor. Axiosta ise bize direk obje olarak döndürüyor.
+- Axios kullandığımız zaman herhangi bir isteği iptal edebiliyoruz ya da time out belirleyebilirz  fakat fetch de ise böyle bir şey yoktur.
+- Axios'ın fetche göre daha geniş bir browsera sahiptir.
 
-### `npm start`
+Axios'ı kullanabilmek için bunu modül olarak kurmamız gerek.
+Terminalde ilk olarak 
+1. **yarn add axios** ya da **npm install axios --save**  diyerek paketi indirmiş oluyoruz.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Kurulumu tamamladıktan sonra kullanacağımız projeye import etmemiz gerek
+React'ta 
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+2. **import axios from "axios"** diyerek dahil etmiş oluyoruz.
 
-### `npm test`
+```javascript
+  useEffect(() => {
+    axios("https://jsonplaceholder.typicode.com/users")
+  // .then((res) => res.json()) axios kullandığımız için bu işleme ihtiyacımız kalmadı.
+  //  fetch kullansaydık bunu da kullanmamız gerekecekti. fetch i kullandığımız zaman bize body   // json olarak değil de string ifade olarak veriyor. 
+  // Axiosta ise direk bize obje olarak dönüyor.
+      .then((res) => setUsers(res.data))
+      .catch((e) => console.log(e))
+      .finally(() => setIsLoading(false));
+  }, []);
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
