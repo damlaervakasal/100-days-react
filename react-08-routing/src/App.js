@@ -3,6 +3,7 @@ import "./App.css";
 import About from "./components/About";
 import Home from "./components/Home";
 import Users from "./components/Users";
+import User from "./components/User";
 
 import React from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
@@ -32,6 +33,8 @@ function App() {
             <Route path="/users" element={<Users />} />
 
             <Route path="/home" element={<Home />} />
+
+            <Route path="/user/:id" element={<User />} />
           </Routes>
         </div>
       </Router>
