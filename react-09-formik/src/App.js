@@ -1,6 +1,6 @@
 import logo from "./logo.svg";
 import "./App.css";
-import { Formik, Field, Form } from "formik";
+import { Formik } from "formik";
 
 function App() {
   return (
@@ -17,26 +17,32 @@ function App() {
           console.log(values);
         }}
       >
-        <Form>
-          <label htmlFor="firstName">First Name</label>
-          <Field id="firstName" name="firstName" placeholder="Jane" />
-          <br />
-          <br />
-          <label htmlFor="lastName">Last Name</label>
-          <Field id="lastName" name="lastName" placeholder="Doe" />
-          <br />
-          <br />
-          <label htmlFor="email">Email</label>
-          <Field
-            id="email"
-            name="email"
-            placeholder="jane@acme.com"
-            type="email"
-          />
-          <br />
-          <br />
-          <button type="submit">Submit</button>
-        </Form>
+        {({ handleSubmit, handleChange }) => (
+          <form onSubmit={handleSubmit}>
+            {/* form etiketi yerine html etiketi olan form etiketini kullandık */}
+            <label htmlFor="firstName">First Name</label>
+            <input name="firstName" onChange={handleChange} />
+            <br />
+            <br />
+            {/* <Field id="firstName" name="firstName" placeholder="Jane" /> */}
+            {/* field etiketi yerine html etiketi olan input etiketini kullandık */}
+            <label htmlFor="lastName">Last Name</label>
+            <input name="lastName" onChange={handleChange} />
+            <br />
+            <br />
+            <label htmlFor="email">Email</label>
+            <input name="email" onChange={handleChange} />
+            {/* <Field
+          id="email"
+          name="email"
+          placeholder="jane@acme.com"
+          type="email"
+        /> */}
+            <br />
+            <br />
+            <button type="submit">Submit</button>
+          </form>
+        )}
       </Formik>
     </div>
   );
