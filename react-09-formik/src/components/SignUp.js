@@ -3,48 +3,43 @@ import { useFormik } from "formik";
 import validations from "./validations";
 
 function SignUp() {
-  const { handleSubmit, handleChange, values } = useFormik({
-    initialValues: {
-      // firstName: "Damla",
-      // lastName: "Kasal",
-      email: "",
-      password: "",
-      passwordConfirm: "",
-      // gender: "female",
-      // hobies: [],
-      // country: "Turkey",
-    },
-    onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
-      console.log(values);
-    },
-    validationSchema: validations,
-  });
+  const { handleSubmit, handleChange, handleBlur, values, errors, touched } =
+    useFormik({
+      initialValues: {
+        // firstName: "Damla",
+        // lastName: "Kasal",
+        email: "",
+        password: "",
+        passwordConfirm: "",
+        // gender: "female",
+        // hobies: [],
+        // country: "Turkey",
+      },
+      onSubmit: (values) => {
+        alert(JSON.stringify(values, null, 2));
+        console.log(values);
+      },
+      validationSchema: validations,
+    });
+
+  console.log(errors);
 
   return (
     <div>
       <h1>Sign Up</h1>
       <form onSubmit={handleSubmit}>
-        {/* <label htmlFor="firstName">First Name</label>
-        <input
-          name="firstName"
-          value={values.firstName}
-          onChange={handleChange}
-        />
-        <br />
-        <br /> */}
-
-        {/* <label htmlFor="lastName">Last Name</label>
-        <input
-          name="lastName"
-          value={values.lastName}
-          onChange={handleChange}
-        />
-        <br />
-        <br /> */}
         <label htmlFor="email">Email</label>
-        <input name="email" value={values.email} onChange={handleChange} />
+        <input
+          name="email"
+          value={values.email}
+          onChange={handleChange}
+          onBlur={handleBlur}
+        />
 
+        {errors.email && touched.email && (
+          <div className="error">{errors.email}</div>
+        )}
+        {/* error adı altında e -mail varsa ve buna daha önce focus olunduysa o zaman bu uyarıyı göster */}
         <br />
         <br />
 
@@ -54,7 +49,11 @@ function SignUp() {
           name="password"
           value={values.password}
           onChange={handleChange}
+          onBlur={handleBlur}
         />
+        {errors.password && touched.password && (
+          <div className="error">{errors.password}</div>
+        )}
         <br />
         <br />
 
@@ -63,66 +62,12 @@ function SignUp() {
           name="passwordConfirm"
           value={values.passwordConfirm}
           onChange={handleChange}
+          onBlur={handleBlur}
         />
 
-        {/* <label htmlFor="gender">Gender</label>
-        <br />
-
-        <span>Male</span>
-        <input
-          type="radio"
-          name="gender"
-          value="male"
-          onChange={handleChange}
-          checked={values.gender === "male"}
-        />
-        <span>Female</span>
-        <input
-          type="radio"
-          name="gender"
-          value="famale"
-          onChange={handleChange}
-          checked={values.gender === "female"}
-        />
-        <br />
-        <br />
-
-        <div>
-          football
-          <input
-            type="checkbox"
-            name="hobies"
-            value="football"
-            onChange={handleChange}
-          />
-        </div>
-        <div>
-          cinema
-          <input
-            type="checkbox"
-            name="hobies"
-            value="cinema"
-            onChange={handleChange}
-          />
-        </div>
-        <div>
-          watch movie
-          <input
-            type="checkbox"
-            name="hobies"
-            value="watch movie"
-            onChange={handleChange}
-          />
-        </div>
-        <br />
-
-        <select name="country" value={values.country} onChange={handleChange}>
-          <option value="tr">Turkey</option>
-          <option value="uk">England</option>
-          <option value="usa">America</option>
-        </select>
-        <br />
-        <br /> */}
+        {errors.passwordConfirm && touched.passwordConfirm && (
+          <div className="error">{errors.passwordConfirm}</div>
+        )}
         <br />
         <br />
         <button type="submit">Submit</button>
