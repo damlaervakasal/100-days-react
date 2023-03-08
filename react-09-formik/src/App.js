@@ -8,39 +8,110 @@ function App() {
       <h1>Sign Up</h1>
       <Formik
         initialValues={{
-          firstName: "",
-          lastName: "",
-          email: "",
+          firstName: "Damla",
+          lastName: "Kasal",
+          email: "damlaervakasal3@gmail.com89",
+          gender: "female",
+          hobies: [],
+          country: "England",
         }}
         onSubmit={async (values) => {
           await new Promise((r) => setTimeout(r, 500));
           console.log(values);
         }}
       >
-        {({ handleSubmit, handleChange }) => (
+        {({ handleSubmit, handleChange, values }) => (
           <form onSubmit={handleSubmit}>
-            {/* form etiketi yerine html etiketi olan form etiketini kullandık */}
             <label htmlFor="firstName">First Name</label>
-            <input name="firstName" onChange={handleChange} />
+            <input
+              name="firstName"
+              value={values.firstName}
+              onChange={handleChange}
+            />
             <br />
             <br />
-            {/* <Field id="firstName" name="firstName" placeholder="Jane" /> */}
-            {/* field etiketi yerine html etiketi olan input etiketini kullandık */}
+
             <label htmlFor="lastName">Last Name</label>
-            <input name="lastName" onChange={handleChange} />
+            <input
+              name="lastName"
+              value={values.lastName}
+              onChange={handleChange}
+            />
             <br />
             <br />
             <label htmlFor="email">Email</label>
-            <input name="email" onChange={handleChange} />
-            {/* <Field
-          id="email"
-          name="email"
-          placeholder="jane@acme.com"
-          type="email"
-        /> */}
+            <input name="email" value={values.email} onChange={handleChange} />
+
             <br />
             <br />
+
+            <label htmlFor="gender">Gender</label>
+            <br />
+
+            <span>Male</span>
+            <input
+              type="radio"
+              name="gender"
+              value="male"
+              onChange={handleChange}
+              checked={values.gender === "male"}
+            />
+            <span>Female</span>
+            <input
+              type="radio"
+              name="gender"
+              value="famale"
+              onChange={handleChange}
+              checked={values.gender === "female"}
+            />
+            <br />
+            <br />
+
+            <div>
+              football
+              <input
+                type="checkbox"
+                name="hobies"
+                value="football"
+                onChange={handleChange}
+              />
+            </div>
+            <div>
+              cinema
+              <input
+                type="checkbox"
+                name="hobies"
+                value="cinema"
+                onChange={handleChange}
+              />
+            </div>
+            <div>
+              watch movie
+              <input
+                type="checkbox"
+                name="hobies"
+                value="watch movie"
+                onChange={handleChange}
+              />
+            </div>
+            <br />
+
+            <select
+              name="country"
+              value={values.country}
+              onChange={handleChange}
+            >
+              <option value="tr">Turkey</option>
+              <option value="uk">England</option>
+              <option value="usa">America</option>
+            </select>
+            <br />
+            <br />
+
             <button type="submit">Submit</button>
+            <br />
+            <br />
+            <code>{JSON.stringify(values)}</code>
           </form>
         )}
       </Formik>
